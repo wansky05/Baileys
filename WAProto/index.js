@@ -35561,6 +35561,7 @@ export const proto = $root.proto = (() => {
         Message.prototype.pollCreationMessageV5 = null;
         Message.prototype.newsletterFollowerInviteMessageV2 = null;
         Message.prototype.pollResultSnapshotMessageV3 = null;
+        Message.prototype.pollCreationMessageV6 = null;
 
         let $oneOfFields;
 
@@ -36134,6 +36135,12 @@ export const proto = $root.proto = (() => {
             set: $util.oneOfSetter($oneOfFields)
         });
 
+        // Virtual OneOf for proto3 optional field
+        Object.defineProperty(Message.prototype, "_pollCreationMessageV6", {
+            get: $util.oneOfGetter($oneOfFields = ["pollCreationMessageV6"]),
+            set: $util.oneOfSetter($oneOfFields)
+        });
+
         Message.create = function create(properties) {
             return new Message(properties);
         };
@@ -36331,6 +36338,8 @@ export const proto = $root.proto = (() => {
                 $root.proto.Message.NewsletterFollowerInviteMessage.encode(m.newsletterFollowerInviteMessageV2, w.uint32(906).fork()).ldelim();
             if (m.pollResultSnapshotMessageV3 != null && Object.hasOwnProperty.call(m, "pollResultSnapshotMessageV3"))
                 $root.proto.Message.PollResultSnapshotMessage.encode(m.pollResultSnapshotMessageV3, w.uint32(914).fork()).ldelim();
+            if (m.pollCreationMessageV6 != null && Object.hasOwnProperty.call(m, "pollCreationMessageV6"))
+                $root.proto.Message.PollCreationMessage.encode(m.pollCreationMessageV6, w.uint32(954).fork()).ldelim();
             return w;
         };
 
@@ -36721,6 +36730,10 @@ export const proto = $root.proto = (() => {
                     }
                 case 114: {
                         m.pollResultSnapshotMessageV3 = $root.proto.Message.PollResultSnapshotMessage.decode(r, r.uint32());
+                        break;
+                    }
+                case 119: {
+                        m.pollCreationMessageV6 = $root.proto.Message.PollCreationMessage.decode(r, r.uint32());
                         break;
                     }
                 default:
@@ -37208,6 +37221,11 @@ export const proto = $root.proto = (() => {
                     throw TypeError(".proto.Message.pollResultSnapshotMessageV3: object expected");
                 m.pollResultSnapshotMessageV3 = $root.proto.Message.PollResultSnapshotMessage.fromObject(d.pollResultSnapshotMessageV3);
             }
+            if (d.pollCreationMessageV6 != null) {
+                if (typeof d.pollCreationMessageV6 !== "object")
+                    throw TypeError(".proto.Message.pollCreationMessageV6: object expected");
+                m.pollCreationMessageV6 = $root.proto.Message.PollCreationMessage.fromObject(d.pollCreationMessageV6);
+            }
             return m;
         };
 
@@ -37689,6 +37707,11 @@ export const proto = $root.proto = (() => {
                 d.pollResultSnapshotMessageV3 = $root.proto.Message.PollResultSnapshotMessage.toObject(m.pollResultSnapshotMessageV3, o);
                 if (o.oneofs)
                     d._pollResultSnapshotMessageV3 = "pollResultSnapshotMessageV3";
+            }
+            if (m.pollCreationMessageV6 != null && m.hasOwnProperty("pollCreationMessageV6")) {
+                d.pollCreationMessageV6 = $root.proto.Message.PollCreationMessage.toObject(m.pollCreationMessageV6, o);
+                if (o.oneofs)
+                    d._pollCreationMessageV6 = "pollCreationMessageV6";
             }
             return d;
         };
@@ -57979,6 +58002,7 @@ export const proto = $root.proto = (() => {
             PollCreationMessage.prototype.pollContentType = null;
             PollCreationMessage.prototype.pollType = null;
             PollCreationMessage.prototype.correctAnswer = null;
+            PollCreationMessage.prototype.hideVoterNames = null;
 
             let $oneOfFields;
 
@@ -58024,6 +58048,12 @@ export const proto = $root.proto = (() => {
                 set: $util.oneOfSetter($oneOfFields)
             });
 
+            // Virtual OneOf for proto3 optional field
+            Object.defineProperty(PollCreationMessage.prototype, "_hideVoterNames", {
+                get: $util.oneOfGetter($oneOfFields = ["hideVoterNames"]),
+                set: $util.oneOfSetter($oneOfFields)
+            });
+
             PollCreationMessage.create = function create(properties) {
                 return new PollCreationMessage(properties);
             };
@@ -58049,6 +58079,8 @@ export const proto = $root.proto = (() => {
                     w.uint32(56).int32(m.pollType);
                 if (m.correctAnswer != null && Object.hasOwnProperty.call(m, "correctAnswer"))
                     $root.proto.Message.PollCreationMessage.Option.encode(m.correctAnswer, w.uint32(66).fork()).ldelim();
+                if (m.hideVoterNames != null && Object.hasOwnProperty.call(m, "hideVoterNames"))
+                    w.uint32(80).bool(m.hideVoterNames);
                 return w;
             };
 
@@ -58093,6 +58125,10 @@ export const proto = $root.proto = (() => {
                         }
                     case 8: {
                             m.correctAnswer = $root.proto.Message.PollCreationMessage.Option.decode(r, r.uint32());
+                            break;
+                        }
+                    case 10: {
+                            m.hideVoterNames = r.bool();
                             break;
                         }
                     default:
@@ -58175,6 +58211,9 @@ export const proto = $root.proto = (() => {
                         throw TypeError(".proto.Message.PollCreationMessage.correctAnswer: object expected");
                     m.correctAnswer = $root.proto.Message.PollCreationMessage.Option.fromObject(d.correctAnswer);
                 }
+                if (d.hideVoterNames != null) {
+                    m.hideVoterNames = Boolean(d.hideVoterNames);
+                }
                 return m;
             };
 
@@ -58225,6 +58264,11 @@ export const proto = $root.proto = (() => {
                     d.correctAnswer = $root.proto.Message.PollCreationMessage.Option.toObject(m.correctAnswer, o);
                     if (o.oneofs)
                         d._correctAnswer = "correctAnswer";
+                }
+                if (m.hideVoterNames != null && m.hasOwnProperty("hideVoterNames")) {
+                    d.hideVoterNames = m.hideVoterNames;
+                    if (o.oneofs)
+                        d._hideVoterNames = "hideVoterNames";
                 }
                 return d;
             };
